@@ -1,0 +1,104 @@
+{
+    "result": [
+        {
+            "question": "What is the importance of clean code?",
+            "answers": {
+                "a": "It allows the reader to understand its purpose easily",
+                "b": "It makes debugging and maintenance easier",
+                "c": "It ensures the code's functionality and robustness",
+                "d": "All of the above"
+            },
+            "correctAnswer": "d"
+        },
+        {
+            "question": "Which of the following is a principle of clean code?",
+            "answers": {
+                "a": "Variable names should be cryptic and misleading",
+                "b": "Functions and methods should be nouns",
+                "c": "The code should be as complex as possible",
+                "d": "The chosen nomenclature should adhere to a consistent theme"
+            },
+            "correctAnswer": "d"
+        },
+        {
+            "question": "What is the purpose of comments in code?",
+            "answers": {
+                "a": "To state the obvious",
+                "b": "To make the code self-explanatory",
+                "c": "To illuminate the rationale behind decisions",
+                "d": "To avoid the need for refactoring"
+            },
+            "correctAnswer": "c"
+        },
+        {
+            "question": "Why should code be tested?",
+            "answers": {
+                "a": "To break the code by default",
+                "b": "To ensure the code's functionality and robustness",
+                "c": "To make debugging and maintenance easier",
+                "d": "To avoid refactoring"
+            },
+            "correctAnswer": "b"
+        },
+        {
+            "question": "What is refactoring?",
+            "answers": {
+                "a": "Changing the external behavior of the code",
+                "b": "Writing new features or revisiting old ones",
+                "c": "Improving the internal structure of the code without changing its behavior",
+                "d": "Making the code as complex as necessary"
+            },
+            "correctAnswer": "c"
+        },
+        {
+            "question": "What is clean code a commitment to?",
+            "answers": {
+                "a": "Craftsmanship in software development",
+                "b": "Adopting a set of rules",
+                "c": "Writing code for machines to execute",
+                "d": "Ignoring the need for refactoring"
+            },
+            "correctAnswer": "a"
+        },
+        {
+            "question": "What is clean code described as?",
+            "answers": {
+                "a": "A process towards perfection",
+                "b": "A one-off task",
+                "c": "A dialogue between the present and the future",
+                "d": "A commitment to simplicity"
+            },
+            "correctAnswer": "c"
+        },
+        {
+            "question": "What should be avoided in variable names?",
+            "answers": {
+                "a": "Descriptive and precise names",
+                "b": "Cryptic abbreviations",
+                "c": "Misleading identifiers",
+                "d": "A coherent and consistent theme"
+            },
+            "correctAnswer": "b"
+        },
+        {
+            "question": "What should be the complexity of solutions?",
+            "answers": {
+                "a": "As simple as possible, yet as complex as necessary",
+                "b": "As complex as possible",
+                "c": "As simple as possible",
+                "d": "Increasing complexity over time"
+            },
+            "correctAnswer": "a"
+        },
+        {
+            "question": "How should tests be treated?",
+            "answers": {
+                "a": "As part of the codebase",
+                "b": "Avoided to save time",
+                "c": "Not maintained",
+                "d": "Only created for new features"
+            },
+            "correctAnswer": "a"
+        }
+    ]
+}
