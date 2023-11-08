@@ -36,7 +36,9 @@ export function useQuestions(questionsData: QuestionProps[]) {
         }
     }
 
+    const canEndQuiz = questions.every(q => q.chosenAnswer)
+
     const question = questions[currentIdx]
 
-    return { question, next, prev, hasNext, hasPrev, questions, chooseAnswer }
+    return { question, next, prev, hasNext, hasPrev, questions, chooseAnswer, canEndQuiz }
 }

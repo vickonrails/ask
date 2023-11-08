@@ -3,7 +3,7 @@ import { headers } from 'next/headers';
 
 export type AnswerKey = 'a' | 'b' | 'c' | 'd'
 
-export interface Question {
+export interface QuestionProps {
   id: number;
   text: string;
   answers: Record<AnswerKey, string>;
@@ -11,7 +11,7 @@ export interface Question {
   chosenAnswer?: string;
 }
 
-async function fetchQuestions(): Promise<Question[]> {
+async function fetchQuestions(): Promise<QuestionProps[]> {
   const host = headers().get("host");
   const res = await fetch(`http://${host}/api/questions`)
   const json = await res.json()

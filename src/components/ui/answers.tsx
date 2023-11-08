@@ -1,4 +1,4 @@
-import { useQuestionsContext } from "@/app/context/QuestionsContext";
+import { useQuestionsContext } from "@/context/QuestionsContext";
 import { AnswerKey, Question } from "@/app/quiz/page";
 import { Label } from "./label";
 import { RadioGroup, RadioGroupItem } from "./radio-group";
@@ -34,7 +34,6 @@ export function Tag({ label }: { label: string }) {
 }
 
 function Answer({ text, value, question }: { text: string, value: string, question: Question }) {
-    console.log({ value, id: `${question.id}-${value}` })
     const questionsContext = useQuestionsContext()
     if (!questionsContext) return;
     const { chooseAnswer } = questionsContext
