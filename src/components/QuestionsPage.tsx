@@ -1,11 +1,12 @@
 "use client";
 
+import { QuestionProps } from '@/app/quiz/page';
 import QuestionsContext, { useQuestionsContext } from '@/context/QuestionsContext';
 import { useQuestions } from '@/hooks/useQuestions';
 import { cn } from '@/lib/utils';
 import { Questions } from './ui/questions';
 
-function QuestionsPage({ questionsData }: { questionsData: Question[] }) {
+function QuestionsPage({ questionsData }: { questionsData: QuestionProps[] }) {
     const questionsCtx = useQuestions(questionsData)
 
     return (

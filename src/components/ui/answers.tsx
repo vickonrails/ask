@@ -1,14 +1,20 @@
 import { useQuestionsContext } from "@/context/QuestionsContext";
-import { AnswerKey, Question } from "@/app/quiz/page";
+import { AnswerKey, QuestionProps } from "@/app/quiz/page";
 import { Label } from "./label";
 import { RadioGroup, RadioGroupItem } from "./radio-group";
+import { cn } from "@/lib/utils";
 
-export function Answers({ question }: { question: Question }) {
+// TODO: I need to test this part of the code
+interface AnswersProps {
+    question: QuestionProps
+    highlightCorrect?: boolean
+    disabled?: boolean
+}
+
+export function Answers({ question, highlightCorrect = false, disabled = false }: AnswersProps) {
     const { answers } = question
     const objectKeys = Object.keys(answers) as AnswerKey[];
     const questionsContext = useQuestionsContext()
-    if (!questionsContext) return;
-
     const { chooseAnswer } = questionsContext
 
     return (
@@ -17,9 +23,17 @@ export function Answers({ question }: { question: Question }) {
             className='flex flex-col gap-2 mb-6'
             onValueChange={(val) => chooseAnswer(question.id, val)}
             value={question.chosenAnswer}
+            disabled={disabled}
         >
             {objectKeys.map((key) => (
-                <Answer key={key} text={answers[key]} value={key} question={question} />
+                <Answer
+                    key={key}
+                    text={answers[key]}
+                    value={key}
+                    question={question}
+                    highlightCorrect={highlightCorrect}
+                    disabled={disabled}
+                />
             ))}
         </RadioGroup>
     )
@@ -33,14 +47,31 @@ export function Tag({ label }: { label: string }) {
     )
 }
 
-function Answer({ text, value, question }: { text: string, value: string, question: Question }) {
-    const questionsContext = useQuestionsContext()
-    if (!questionsContext) return;
-    const { chooseAnswer } = questionsContext
+interface AnswerProps {
+    text: string
+    value: string
+    highlightCorrect?: boolean
+    question: QuestionProps
+    disabled?: boolean
+}
+function Answer({ text, value, highlightCorrect = false, question, disabled }: AnswerProps) {
+    const isSelected = question.chosenAnswer === value
+    const isCorrect = question.correctAnswer === value
+    const correctSelected = isCorrect && isSelected
+    const wrongSelected = !isCorrect && isSelected
 
     return (
-        <Label className='flex items-center gap-2 cursor-pointer rounded-sm bg-gray-50 p-2 lg:p-4 lg:gap-3 hover:bg-gray-100'>
-            <RadioGroupItem value={value} />
+        <Label
+            className={cn(
+                'flex items-center border gap-2 rounded-sm p-2 lg:p-4 lg:gap-3',
+                isSelected && 'border-primary text-primary',
+                (isCorrect && highlightCorrect) && 'border-green-600 text-green-600',
+                (correctSelected && highlightCorrect) && 'border-green-600 bg-green-50',
+                (wrongSelected && highlightCorrect) && 'border-destructive bg-red-50 text-destructive',
+                disabled ? '' : 'cursor-pointer hover:bg-gray-100'
+            )}
+        >
+            <RadioGroupItem value={value} className="disabled:opacity-100 text-current" />
             <p className='text-muted-foreground text-sm'>{text}</p>
         </Label>
     )
