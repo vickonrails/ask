@@ -1,4 +1,5 @@
 import { OpenAI } from 'openai'
+import { questions } from '../../../../sample.json'
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY
@@ -19,14 +20,14 @@ const instruction = `
     The format will be an array of {question, answers, correctAnswer}, the questions will have the IDs of a,b,c and d. The correctAnswer key will have the id of the correct answer.
 `
 export async function GET() {
-    const completion = await openai.chat.completions.create({
-        model: 'gpt-3.5-turbo',
-        messages: [
-            { role: 'system', content: instruction },
-            { role: 'user', content: sampleText },
-        ]
-    });
+    // const completion = await openai.chat.completions.create({
+    //     model: 'gpt-3.5-turbo',
+    //     messages: [
+    //         { role: 'system', content: instruction },
+    //         { role: 'user', content: sampleText },
+    //     ]
+    // });
 
-    const result = completion.choices[0].message.content
-    return Response.json({ result: JSON.parse(result ?? '') })
+    // const result = completion.choices[0].message.content
+    return Response.json({ questions });
 }
