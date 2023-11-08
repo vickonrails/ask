@@ -1,60 +1,94 @@
-import { AnswerKey, Question as QuestionProps } from '@/app/quiz/page'
-import { RadioGroup, RadioGroupItem } from './radio-group'
-import { Button } from './button'
-import { ArrowRight } from 'lucide-react'
-import { Label } from './label'
+"use client";
+
+import { useQuestionsContext } from '@/app/context/QuestionsContext';
+import { Question as QuestionProps } from '@/app/quiz/page';
+import { Answers, Tag } from './answers';
+import { Label } from './label';
+import { RadioGroup, RadioGroupItem } from './radio-group';
+import { Button } from './button';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 export const Questions = ({ questions }: { questions: QuestionProps[] }) => {
+    const questionsContext = useQuestionsContext();
+
+    if (!questionsContext) {
+        return;
+    }
+    const { question, next, prev, hasNext, hasPrev } = questionsContext
+
+    const handleSubmit = () => {
+
+    }
+
     return (
         <section className='lg:max-w-3xl mx-auto'>
-            {questions.map((question, idx) => {
-                const { answers } = question
-                return (
-                    <>
-                        <Tag label="Single Choice" />
-                        <h2 className='text-xl py-4 border-b font-medium mb-6'>{`Question ${idx}/${questions.length}`}</h2>
-                        <p className='text-lg mb-4 text-gray-700'>{question.text}</p>
+            <form onSubmit={handleSubmit}>
+                <article key={question.id}>
+                    <Tag label="Single Choice" />
+                    <h2 className='text-xl py-4 border-b font-medium mb-6'>{`Question ${question.id}/${questions.length}`}</h2>
+                    <p className='text-lg mb-4 text-gray-700'>{question.text}</p>
 
-                        <RadioGroup className='flex flex-col gap-2 mb-6'>
-                            <Answers answers={answers} />
-                        </RadioGroup>
+                    <Answers question={question} />
 
-                        <Button className='flex items-center gap-1'>
+                    <section className='flex gap-2'>
+                        <Button variant='outline' disabled={!hasPrev} className='flex items-center gap-1 select-none' onClick={prev}>
+                            <ArrowLeft size={18} />
+                            <span>Next Question</span>
+                        </Button>
+                        <Button className='flex items-center gap-1 select-none' disabled={!hasNext} onClick={next}>
                             <span>Next Question</span>
                             <ArrowRight size={18} />
                         </Button>
-                    </>
-                )
-            })}
+                    </section>
+                </article>
+            </form>
         </section>
     )
 }
 
-function Answers({ answers }: { answers: Record<AnswerKey, string> }) {
-    const keys = Object.keys(answers) as AnswerKey[];
 
-    return (
-        <RadioGroup className='flex flex-col gap-2 mb-6'>
-            {keys.map((key) => (
-                <Answer key={key} text={answers[key]} value={key} />
-            ))}
-        </RadioGroup>
-    )
-}
+// return (
+//     <section>
+//         <RadioGroup defaultValue="comfortable" name='first' onValueChange={val => alert(val)}>
+//             <div className="flex items-center space-x-2">
+//                 <Label htmlFor="r1">
+//                     <RadioGroupItem value="default" id="r1" />
+//                     Default
+//                 </Label>
+//             </div>
+//             <div className="flex items-center space-x-2">
+//                 <Label htmlFor="r2">
+//                     <RadioGroupItem value="comfortable" id="r2" />
+//                     Comfortable
+//                 </Label>
+//             </div>
+//             <div className="flex items-center space-x-2">
+//                 <Label htmlFor="r3">
+//                     <RadioGroupItem value="compact" id="r3" />
+//                     Compact
+//                 </Label>
+//             </div>
+//         </RadioGroup>
 
-function Tag({ label }: { label: string }) {
-    return (
-        <div className='border inline-block px-2 py-1 text-xs rounded-md bg-gray-50'>
-            {label}
-        </div>
-    )
-}
-
-function Answer({ text, value }: { text: string, value: AnswerKey }) {
-    return (
-        <Label htmlFor={value} className='flex items-center gap-2 cursor-pointer rounded-sm bg-gray-50 p-2 lg:p-4 lg:gap-3 hover:bg-gray-100'>
-            <RadioGroupItem value={value} id={value} />
-            <p className='text-muted-foreground text-sm'>{text}</p>
-        </Label>
-    )
-}
+//         <RadioGroup onValueChange={val => alert(val)}>
+//             <div className="flex items-center space-x-2">
+//                 <Label>
+//                     <RadioGroupItem value="default" />
+//                     Default
+//                 </Label>
+//             </div>
+//             <div className="flex items-center space-x-2">
+//                 <Label>
+//                     <RadioGroupItem value="comfortable" />
+//                     Comfortable
+//                 </Label>
+//             </div>
+//             <div className="flex items-center space-x-2">
+//                 <Label>
+//                     <RadioGroupItem value="compact" />
+//                     Compact
+//                 </Label>
+//             </div>
+//         </RadioGroup>
+//     </section>
+// )
