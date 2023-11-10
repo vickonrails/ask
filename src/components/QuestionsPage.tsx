@@ -1,13 +1,14 @@
 "use client";
 
-import { QuestionProps } from '@/app/quiz/page';
 import QuestionsContext, { useQuestionsContext } from '@/context/QuestionsContext';
 import { useQuestions } from '@/hooks/useQuestions';
 import { cn } from '@/lib/utils';
 import { Questions } from './ui/questions';
 
-function QuestionsPage({ questionsData }: { questionsData: QuestionProps[] }) {
-    const questionsCtx = useQuestions(questionsData)
+function QuestionsPage() {
+    const questionsCtx = useQuestions()
+
+    if (questionsCtx.fetchingQuestions) return <p>Fetching...</p>
 
     return (
         <QuestionsContext value={questionsCtx}>

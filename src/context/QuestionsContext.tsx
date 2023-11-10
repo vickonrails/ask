@@ -6,6 +6,7 @@ import { QuestionProps } from "../app/quiz/page";
 interface QuestionsContextProps {
     question?: QuestionProps;
     questions: QuestionProps[]
+    fetchingQuestions: boolean
     next: () => void
     prev: () => void
     hasNext: boolean
@@ -19,6 +20,7 @@ const initialCtxValue: QuestionsContextProps = {
     chooseAnswer: () => { /** noop */ },
     hasNext: false,
     hasPrev: false,
+    fetchingQuestions: false,
     next: () => { /** noop */ },
     prev: () => { /** noop */ },
     questions: []

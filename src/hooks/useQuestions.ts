@@ -1,11 +1,14 @@
-"use client"
+import { useEffect, useState } from "react";
+import { usePDFBuffer } from './usePDFBuffer';
 
-import { Question as QuestionProps } from '@/app/quiz/page';
-import { useState } from "react";
-
-export function useQuestions(questionsData: QuestionProps[]) {
+export function useQuestions() {
+    const { questions: initialQuestions, fetching } = usePDFBuffer()
     const [currentIdx, setCurrentIdx] = useState(0)
-    const [questions, setQuestions] = useState(questionsData)
+    const [questions, setQuestions] = useState(initialQuestions)
+
+    useEffect(() => {
+        setQuestions(initialQuestions);
+    }, [initialQuestions]);
 
     const chooseAnswer = (questionId: number, answer: string) => {
         setQuestions(prevQuestions => {
@@ -40,5 +43,5 @@ export function useQuestions(questionsData: QuestionProps[]) {
 
     const question = questions[currentIdx]
 
-    return { question, next, prev, hasNext, hasPrev, questions, chooseAnswer, canEndQuiz }
+    return { question, fetchingQuestions: fetching, next, prev, hasNext, hasPrev, questions, chooseAnswer, canEndQuiz }
 }
