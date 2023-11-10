@@ -6,9 +6,9 @@ const openai = new OpenAI({
 })
 
 const instruction = `
-    Please read the following passage and generate a set of objective questions in JSON format. The JSON should have an array of question objects at the root level (no other property, just an array), each with 'id', 'text', 'answers' and 'correctAnswer' fields. 
-    'id' should be a unique identifier for each question, 'text' should contain the text of the comprehension question and 'answers' should be an object of possible answers each mapped a-d. 
-    The 'correctAnswer' should contain the key of the correct answer (key of the possible answers). I'll supply the questions as a user prompt.
+    Please read the following passage and generate a set of 10 objective questions in JSON format. The response should be a javascript array of question objects at the root level (no other property, just an array), each with 'id', 'text', 'answers' and 'correctAnswer' fields. 
+    'id' should be a unique integer identifier for each question, 'text' should contain the text of the comprehension question and 'answers' should be an object of possible answers each mapped a-d. 
+    The 'correctAnswer' should contain the key of the correct answer (key of the possible answers). Bear in mind that the response is not going to be rendered as code, so don't include the backticks. Just return a javascript object. I'll supply the questions as a user prompt.
 `
 
 export async function POST(request: Request) {
@@ -24,10 +24,14 @@ export async function POST(request: Request) {
             ]
         });
 
-        const result = completion.choices[0].message.content
-        return Response.json({ questions: result });
+        let response = completion.choices[0].message.content
+        if (response?.includes('```')) {
+            response = response?.substring(7, response.length - 3);
+        }
+        return Response.json({ questions: JSON.parse(response ?? '') });
     } catch (err) {
-        // 
+        console.log(err)
+        // TODO: handle error
     }
 
 }
