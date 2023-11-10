@@ -73,4 +73,7 @@
   body {
     @apply bg-background text-foreground;
   }
+  body, html, #root, #__next {
+    @apply h-full;
+  }
 }

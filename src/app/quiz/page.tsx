@@ -19,6 +19,9 @@ async function fetchQuestions(): Promise<QuestionProps[]> {
 }
 
 const QuizPage = async () => {
+  // retrieve the file from the context
+  // send the file to the server
+  // pass the questions down
   const questions = await fetchQuestions();
   return (
     <QuestionsPage

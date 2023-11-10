@@ -19,11 +19,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <main>
-          <Container>
-            {children}
-          </Container>
-        </main>
+        <Container>
+          {children}
+        </Container>
       </body>
     </html>
   )
@@ -32,7 +30,7 @@ export default function RootLayout({
 
 function Container({ children, className, ...rest }: HTMLAttributes<HTMLDivElement>) {
   return (
-    <section className={cn('p-4', className)} {...rest}>
+    <section className={cn('p-4 h-full', className)} {...rest}>
       {children}
     </section>
   )
