@@ -65,7 +65,13 @@
     --ring: 212.7 26.8% 83.9%;
   }
 }
- 
+
+@layer components {
+  .hero {
+    @apply bg-hero-illustration-1 bg-no-repeat bg-left-bottom;
+  }
+}
+
 @layer base {
   * {
     @apply border-border;
