@@ -78,7 +78,7 @@ function Results({ onHideResults }: { onHideResults: () => void }) {
     const { questions } = useQuestionsContext();
 
     return (
-        <section>
+        <section className='pb-6'>
             {questions.map((question, index) => (
                 <article key={question.id}>
                     <h2 className='text-xl py-4 border-b font-medium mb-6'>{`Question ${index + 1}/${questions.length}`}</h2>
