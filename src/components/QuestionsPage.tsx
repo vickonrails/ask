@@ -4,11 +4,26 @@ import QuestionsContext, { useQuestionsContext } from '@/context/QuestionsContex
 import { useQuestions } from '@/hooks/useQuestions';
 import { cn } from '@/lib/utils';
 import { Questions } from './ui/questions';
+import Image from 'next/image';
+
+function Loading() {
+    return (
+        <section className='flex flex-col gap-4 justify-center place-items-center h-full'>
+            <Image
+                src='/transformer.svg'
+                width={100}
+                height={100}
+                alt='Loading...'
+            />
+            <p className='text-muted-foreground'>The AI overlords are working...</p>
+        </section>
+    )
+}
 
 function QuestionsPage() {
     const questionsCtx = useQuestions()
 
-    if (questionsCtx.fetchingQuestions) return <p>Fetching...</p>
+    if (questionsCtx.fetchingQuestions) return <Loading />
 
     return (
         <QuestionsContext value={questionsCtx}>

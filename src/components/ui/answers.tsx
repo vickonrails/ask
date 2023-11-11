@@ -4,7 +4,6 @@ import { Label } from "./label";
 import { RadioGroup, RadioGroupItem } from "./radio-group";
 import { cn } from "@/lib/utils";
 
-// TODO: I need to test this part of the code
 interface AnswersProps {
     question: QuestionProps
     highlightCorrect?: boolean
@@ -41,7 +40,7 @@ export function Answers({ question, highlightCorrect = false, disabled = false }
 
 export function Tag({ label }: { label: string }) {
     return (
-        <div className='border inline-block px-2 py-1 text-xs rounded-md bg-gray-50'>
+        <div className='border inline-block px-2 py-[2px] text-xs rounded-md bg-gray-50'>
             {label}
         </div>
     )

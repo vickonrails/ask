@@ -10,7 +10,7 @@ export function PDFUploadButton() {
     const router = useRouter()
     const { setPdfBuffer } = usePdfContext();
     const onFilePicked = useCallback((file: ArrayBuffer) => {
-        console.log({ file })
+        window.localStorage && window.localStorage.removeItem('questions');
         setPdfBuffer(file)
         router.push('/quiz')
     }, [setPdfBuffer, router]);

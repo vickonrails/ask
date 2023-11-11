@@ -1,12 +1,14 @@
 "use client";
 
 import { useQuestionsContext } from '@/context/QuestionsContext';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ChevronLeft } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { FormEvent, useState } from 'react';
 import { Answers, Tag } from './answers';
 import { Button } from './button';
 
 export const Questions = () => {
+    const router = useRouter()
     const [showResults, setShowResults] = useState(false)
     const handleSubmit = (ev: FormEvent<HTMLFormElement>) => {
         ev.preventDefault();
@@ -15,6 +17,10 @@ export const Questions = () => {
 
     return (
         <section className='lg:max-w-3xl mx-auto'>
+            <button className='mb-6 flex items-center hover:text-muted-foreground' onClick={() => router.back()}>
+                <ChevronLeft />
+                <span className='text-sm'>Back to PDF Upload</span>
+            </button>
             {showResults ?
                 (<Results onHideResults={() => setShowResults(false)} />)
                 : (

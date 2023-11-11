@@ -1,4 +1,4 @@
-import { OpenAI } from 'openai'
+import { OpenAI } from 'openai';
 import pdf2json from "pdf-parse/lib/pdf-parse.js";
 
 const openai = new OpenAI({
@@ -33,5 +33,4 @@ export async function POST(request: Request) {
         console.log(err)
         // TODO: handle error
     }
-
 }
