@@ -1,36 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![Demo](./.github/demo.gif)
 
-## Getting Started
+Ask is a small, utility web app to help with spaced repetition. I built this because I was looking for a way to automate my spaced repetition practice.
 
-First, run the development server:
+> The project is experimental right now and I've very little time on it. I plan make a lot of improvements in my free time.
+
+## Setup
+This is a [next.js](https://nextjs.org/) application, so the standard commands work 
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# to start the dev server
+yarn run dev
+# to build the project
+yarn run build
+# lint with eslint
+yarn run lint 
+#start the production build
+yarn run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Features
+- [x] Open AI integration
+- [ ] Basic local storage persistence
+- [ ] Database (Save questions to postgres, Supabase or SQLite DB) 
+- [ ] Quiz Options (Number of Questions, difficulty, Area of concentration)
+- [ ] Multiple choice questions support
+- [ ] Flashcards 
+- [ ] Authentication

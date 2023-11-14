@@ -1,5 +1,5 @@
 import { OpenAI } from 'openai';
-import pdf2json from "pdf-parse/lib/pdf-parse.js";
+import pdfParse from "pdf-parse/lib/pdf-parse.js";
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY
@@ -15,7 +15,7 @@ export async function POST(request: Request) {
     const arrayBuffer = await request.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
     try {
-        const { text: pdfText } = await pdf2json(buffer)
+        const { text: pdfText } = await pdfParse(buffer)
         const completion = await openai.chat.completions.create({
             model: 'gpt-4-1106-preview',
             messages: [
